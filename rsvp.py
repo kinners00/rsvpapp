@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 LINK=os.environ.get('LINK', "www.puppet.com")
 TEXT1=os.environ.get('TEXT1', "Puppet")
-TEXT2=os.environ.get('TEXT2', "Garage RSVP")
+TEXT2=os.environ.get('TEXT2', "Puppet RSVP")
 LOGO=os.environ.get('LOGO', "https://raw.githubusercontent.com/cloudyuga/rsvpapp/master/static/cloudyuga.png")
 COMPANY=os.environ.get('COMPANY', "Puppet Inc.")
 
