@@ -7,11 +7,11 @@ import json
 
 app = Flask(__name__)
 
-LINK=os.environ.get('LINK', "www.puppet.com")
-TEXT1=os.environ.get('TEXT1', "Puppet")
-TEXT2=os.environ.get('TEXT2', "Puppet RSVP")
+LINK=os.environ.get('LINK', "www.cloudyuga.guru")
+TEXT1=os.environ.get('TEXT1', "CloudYuga")
+TEXT2=os.environ.get('TEXT2', "Garage RSVP")
 LOGO=os.environ.get('LOGO', "https://raw.githubusercontent.com/cloudyuga/rsvpapp/master/static/cloudyuga.png")
-COMPANY=os.environ.get('COMPANY', "Puppet Inc.")
+COMPANY=os.environ.get('COMPANY', "CloudYuga Technology Pvt. Ltd.")
 
 MONGODB_HOST=os.environ.get('MONGODB_HOST', 'localhost')
 client = MongoClient(MONGODB_HOST, 27017)
