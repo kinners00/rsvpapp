@@ -3,7 +3,7 @@ COPY . /usr/src/app
 WORKDIR /usr/src/app
 ENV LINK http://www.puppet.com
 ENV TEXT1 Puppet!
-ENV TEXT2 Demo RSVP!
+ENV TEXT2 Pipelines RSVP!
 ENV LOGO https://avatars3.githubusercontent.com/u/234268?s=400&v=4
 ENV COMPANY Puppet Inc.
 RUN pip3 install -r requirements.txt
