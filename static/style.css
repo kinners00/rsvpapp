@@ -13,3 +13,7 @@ h3 {
 .form-group {
 	background-color: white;
 } 
+
+h2 a {
+	color: #ffa205;
+}
