@@ -1,3 +1,4 @@
 /py2
 /py3
 *.pyc
+/.pytest_cache
