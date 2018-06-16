@@ -2,7 +2,7 @@ timidri/rsvpapp:
   Env:
     - LINK: 'http://www.puppet.com'
     - TEXT1: '"Vodafone Demo"'
-    - TEXT2: '"Pipelines RSVP!"'
+    - TEXT2: '"Pipelines RSVP"'
     - LOGO: '"https://avatars3.githubusercontent.com/u/234268?s=400&v=4"'
     - COMPANY: '"Puppet Inc."'
   PkgInclude:
