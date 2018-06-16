@@ -1,11 +1,15 @@
 h2 {
-	color: green;
+	color: white;
 }
 
 h3 {
-	font-family: "Times New Roman", Times, serif;
+	font-family: "Arial", sans-serif;
 }
 
+.jumbotron {
+	background-color: black;
+} 
 
-
-
+.form-group {
+	background-color: white;
+} 
