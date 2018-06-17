@@ -11,18 +11,9 @@ timidri/rsvpapp:
     - static/*
     - templates/*
   Build:
-    - echo "Begin Build"
-    - virtualenv -p python36 py3
-    - source py3/bin/activate
-    - pip install -r requirements.txt
-    - pytest
+    # built with Jenkins
   PreInstall:
     - echo "Begin PreInstall"
-    #- sudo apt-get -y update
-    #- sudo apt-get -y install python
-    #- sudo apt-get -y install python-pip
-    #- sudo apt-get -y install python-virtualenv
-
   PostInstall:
     - echo "Begin PostInstall"
     - virtualenv -p python36 py3
