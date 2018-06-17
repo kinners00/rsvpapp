@@ -29,8 +29,8 @@ def create_push_event(config){
     data['commit_url'] = DISTELLI_CHANGE_URL
     data['repo_url']  = DISTELLI_CHANGE_TARGET
     data['commit_id'] = DISTELLI_CHANGE_ID 
-    data['repo_owner'] = 'ipcrm' 
-    data['repo_name'] = 'pipelines_jenkins'
+    data['repo_owner'] = config['user'] 
+    data['repo_name'] = 'timidri/rsvpapp'
     data['branch'] = DISTELLI_BRANCH_NAME
 
     return pushData('PUT',config['api_url'],pipeargs,data)['event_id']
