@@ -3,10 +3,10 @@ def config = [:]
 
 node('pipelines') {
 
-  config['user'] = 'ipcrm'
+  config['user'] = 'timidri'
   config['api_url']  = "https://api.distelli.com/${config['user']}"
-  config['app_name'] = "pipeilnes_jenkins"
-  config['api_token'] = 'ibmmox8a2mspxs5lzh3ozhwe9xyq0smslsmmg' //BAD!
+  config['app_name'] = "rsvp-jenkins"
+  config['api_token'] = 'qek38duwidb7i6r160ti8kx40p4dn7m5idfr4' //BAD!
 
   stage('setup') {
     checkout(scm).each { k,v -> env.setProperty(k, v) }
