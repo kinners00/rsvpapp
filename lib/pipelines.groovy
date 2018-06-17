@@ -89,7 +89,7 @@ def pushData (method,baseurl,args,payload) {
       return object
     }else{
 
-      error("POST to ${baseurl} failed! Response code ${postRC.toString()}\nResponse: $post.getResponseMessage()")
+      error("POST to ${baseurl} failed! Response code ${postRC.toString()}\nResponse: ${post.getResponseMessage()}")
     }
   } catch (Exception e) {
     throw e
