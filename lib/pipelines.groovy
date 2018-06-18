@@ -35,11 +35,13 @@ def create_push_event(config){
 
     echo data
     
-    response =  pushData('PUT',config['api_url'],pipeargs,data)['event_id']
-
-    echo response
-    return response
-  }
+    try {
+      response = pushData('PUT',config['api_url'],pipeargs,data)['event_id']
+      return response
+    } catch (Exception e){
+      echo e
+      echo response
+    }
 }
 
 def create_build_event(config){
