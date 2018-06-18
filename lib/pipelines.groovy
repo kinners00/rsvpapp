@@ -42,6 +42,7 @@ def create_push_event(config){
       echo e
       echo response
     }
+  }
 }
 
 def create_build_event(config){
