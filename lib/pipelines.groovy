@@ -33,20 +33,7 @@ def create_push_event(config){
     data['repo_name'] = 'timidri/rsvpapp'
     data['branch'] = DISTELLI_BRANCH_NAME
 
-    echo data.toString()
-    
-    try {
-      echo "pipeargs: ${pipeargs}"
-      echo "data: ${data.toString()}"
-      response = pushData('PUT',config['api_url'],pipeargs,data)
-      // echo response.toString()
-      // response = pushData('PUT',config['api_url'],pipeargs,data)['event_id']
-      return response
-    } catch (Exception e){
-      echo data.toString()
-      // echo e.toString()
-      echo response.toString()
-    }
+    return pushData('PUT',config['api_url'],pipeargs,data)['event_id']
   }
 }
 
@@ -60,7 +47,7 @@ def create_build_event(config){
   builddata["build_url"] = DISTELLI_BUILD_URL
   builddata["repo_url"] = DISTELLI_CHANGE_TARGET 
   builddata["commit_url"] = DISTELLI_CHANGE_URL
-  builddata["author_username"] = "timidri"
+  builddata["author_username"] = DISTELLI_CHANGE_AUTHOR
   builddata["author_name"] = DISTELLI_CHANGE_AUTHOR_DISPLAY_NAME
   builddata["commit_msg"] = DISTELLI_CHANGE_TITLE
   builddata["commit_id"] = DISTELLI_CHANGE_ID
@@ -68,17 +55,7 @@ def create_build_event(config){
   builddata["parent_event_id"] = config['push_id']
   
   def pipeargs = "apps/${config['app_name']}/events/buildEvent?apiToken=${PIPELINES_API_TOKEN}"
-  // error(builddata)
-  echo builddata.toString()
-
-  try {
-    def response = pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
-    echo response
-    return response
-  } catch (Exception e){
-      echo e.toString()
-      echo response.toString()
-  }
+  return pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
 }
 
 def update_build_status(build_event_id,status,config){
@@ -94,16 +71,14 @@ def update_build_status(build_event_id,status,config){
   }
 
   def eventargs = "apps/${config['app_name']}/events/${build_event_id}?apiToken=${PIPELINES_API_TOKEN}"
-  // pushData('POST',config['api_url'],eventargs,eventdata)
+  pushData('POST',config['api_url'],eventargs,eventdata)
 }
 
 def pushData (method,baseurl,args,payload) {
   def jsonSlurper = new JsonSlurper()
-  def fullurl
   try {
-    fullurl = "${baseurl}/${args}"
-    echo fullurl
-    post = new URL(fullurl).openConnection();
+    def fullurl = "${baseurl}/${args}"
+    def post = new URL(fullurl).openConnection();
     post.setRequestMethod(method)
     post.setDoOutput(true)
     post.setRequestProperty("Content-Type", "application/json")
@@ -111,16 +86,12 @@ def pushData (method,baseurl,args,payload) {
     def postRC = post.getResponseCode();
     if(postRC.equals(200)) {
       def object = jsonSlurper.parseText(post.getInputStream().getText());
-      echo "object: ${object}"
       return object
     }else{
-
       error("POST to ${baseurl} failed! Response code ${postRC.toString()}")
     }
   } catch (Exception e) {
-    echo "in catch: full url: ${fullurl}" 
-    // echo e
-    // throw e
+    throw e
   }
 }
 
