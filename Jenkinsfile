@@ -24,7 +24,7 @@ node('pipelines') {
       sh('distelli push -save-release release_version.out')
       pipelines.update_build_status(config['build_id'],'Success',config)
     } catch (Exception e) {
-      debug(config.toString())
+      echo config.toString()
       pipelines.update_build_status(config['build_id'],'Failed',config)
       error("Failed to build! - ${e}")
     }
