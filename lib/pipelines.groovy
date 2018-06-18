@@ -33,7 +33,6 @@ def create_push_event(config){
     data['repo_name'] = 'timidri/rsvpapp'
     data['branch'] = DISTELLI_BRANCH_NAME
 
-    pipeargs="a/b/c"
     echo "pipeargs: ${pipeargs}"
     def retval = pushData('PUT',config['api_url'],pipeargs,data)
     echo "retval: ${retval}"
@@ -60,26 +59,25 @@ def create_build_event(config){
   builddata["parent_event_id"] = config['push_id']
   
   def pipeargs = "apps/${config['app_name']}/events/buildEvent?apiToken=${PIPELINES_API_TOKEN}"
-  pipeargs="a/b/c"
 
   return pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
 }
 
-def update_build_status(build_event_id,status,config){
-  set_env(config)
-  DISTELLI_NOW = sh(returnStdout: true, script: 'date -u +%Y-%m-%dT%H:%M:%S.0Z').trim()
+// def update_build_status(build_event_id,status,config){
+//   set_env(config)
+//   DISTELLI_NOW = sh(returnStdout: true, script: 'date -u +%Y-%m-%dT%H:%M:%S.0Z').trim()
 
-  def eventdata = [:]
-  eventdata['build_status'] = status
-  eventdata['build_end'] = DISTELLI_NOW
+//   def eventdata = [:]
+//   eventdata['build_status'] = status
+//   eventdata['build_end'] = DISTELLI_NOW
 
-  if (fileExists('release_version.out')) {
-    eventdata['release_version'] = sh(returnStdout: true, script:'cat release_version.out').trim()
-  }
+//   if (fileExists('release_version.out')) {
+//     eventdata['release_version'] = sh(returnStdout: true, script:'cat release_version.out').trim()
+//   }
 
-  def eventargs = "apps/${config['app_name']}/events/${build_event_id}?apiToken=${PIPELINES_API_TOKEN}"
-  pushData('POST',config['api_url'],eventargs,eventdata)
-}
+//   def eventargs = "apps/${config['app_name']}/events/${build_event_id}?apiToken=${PIPELINES_API_TOKEN}"
+//   pushData('POST',config['api_url'],eventargs,eventdata)
+// }
 
 def pushData (method,baseurl,args,payload) {
   def jsonSlurper = new JsonSlurper()
