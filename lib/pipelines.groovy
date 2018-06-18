@@ -112,7 +112,7 @@ def pushData (method,baseurl,args,payload) {
     }
   } catch (Exception e) {
     // echo fullurl
-    echo e
+    // echo e
     // throw e
   }
 }
