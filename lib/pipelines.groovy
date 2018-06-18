@@ -93,9 +93,10 @@ def update_build_status(build_event_id,status,config){
 
 def pushData (method,baseurl,args,payload) {
   def jsonSlurper = new JsonSlurper()
+  def post
   try {
     def fullurl = "${baseurl}/${args}"
-    def post = new URL(fullurl).openConnection();
+    post = new URL(fullurl).openConnection();
     post.setRequestMethod(method)
     post.setDoOutput(true)
     post.setRequestProperty("Content-Type", "application/json")
