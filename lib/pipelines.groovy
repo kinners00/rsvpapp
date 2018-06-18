@@ -39,8 +39,9 @@ def create_push_event(config){
       response = pushData('PUT',config['api_url'],pipeargs,data)['event_id']
       return response
     } catch (Exception e){
-      echo e
-      echo response
+      echo data.toString()
+      echo e.toString()
+      echo response.toString()
     }
   }
 }
@@ -70,8 +71,8 @@ def create_build_event(config){
     echo response
     return response
   } catch (Exception e){
-      echo e
-      echo response
+      echo e.toString()
+      echo response.toString()
   }
 }
 
@@ -111,7 +112,7 @@ def pushData (method,baseurl,args,payload) {
       error("POST to ${baseurl} failed! Response code ${postRC.toString()}\nResponse: ${post.getInputStream().getText()}")
     }
   } catch (Exception e) {
-    // echo fullurl
+    echo fullurl
     // echo e
     // throw e
   }
