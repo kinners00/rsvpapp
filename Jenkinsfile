@@ -19,6 +19,8 @@ node('pipelines') {
       config['push_id'] = pipelines.create_push_event(config)
       config['build_id'] = pipelines.create_build_event(config)
 
+      echo config
+
       // COMPILE/PACKAGE/WHATEVER
 
       sh('distelli push -save-release release_version.out')
