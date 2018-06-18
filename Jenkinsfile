@@ -19,7 +19,7 @@ node('pipelines') {
       // error("before push_id!")
       config['push_id'] = pipelines.create_push_event(config)
       // error("push_id!")
-      config['build_id'] = pipelines.create_build_event(config)
+      // config['build_id'] = pipelines.create_build_event(config)
       // error("build_id!")
       // COMPILE/PACKAGE/WHATEVER
 
