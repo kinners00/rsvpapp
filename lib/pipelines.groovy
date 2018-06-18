@@ -63,21 +63,25 @@ def create_build_event(config){
   return pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
 }
 
-// def update_build_status(build_event_id,status,config){
-//   set_env(config)
-//   DISTELLI_NOW = sh(returnStdout: true, script: 'date -u +%Y-%m-%dT%H:%M:%S.0Z').trim()
+def update_build_status(build_event_id,status,config){
+  set_env(config)
 
-//   def eventdata = [:]
-//   eventdata['build_status'] = status
-//   eventdata['build_end'] = DISTELLI_NOW
+  echo "build_event_id: ${build_event_id}"
+  echo "status: ${status}"
 
-//   if (fileExists('release_version.out')) {
-//     eventdata['release_version'] = sh(returnStdout: true, script:'cat release_version.out').trim()
-//   }
+  DISTELLI_NOW = sh(returnStdout: true, script: 'date -u +%Y-%m-%dT%H:%M:%S.0Z').trim()
 
-//   def eventargs = "apps/${config['app_name']}/events/${build_event_id}?apiToken=${PIPELINES_API_TOKEN}"
-//   pushData('POST',config['api_url'],eventargs,eventdata)
-// }
+  def eventdata = [:]
+  eventdata['build_status'] = status
+  eventdata['build_end'] = DISTELLI_NOW
+
+  if (fileExists('release_version.out')) {
+    eventdata['release_version'] = sh(returnStdout: true, script:'cat release_version.out').trim()
+  }
+
+  def eventargs = "apps/${config['app_name']}/events/${build_event_id}?apiToken=${PIPELINES_API_TOKEN}"
+  pushData('POST',config['api_url'],eventargs,eventdata)
+}
 
 def pushData (method,baseurl,args,payload) {
   def jsonSlurper = new JsonSlurper()
