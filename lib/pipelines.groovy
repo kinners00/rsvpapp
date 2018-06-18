@@ -60,7 +60,7 @@ def create_build_event(config){
   builddata["build_url"] = DISTELLI_BUILD_URL
   builddata["repo_url"] = DISTELLI_CHANGE_TARGET 
   builddata["commit_url"] = DISTELLI_CHANGE_URL
-  builddata["author_username"] = DISTELLI_CHANGE_AUTHOR
+  builddata["author_username"] = "timidri"
   builddata["author_name"] = DISTELLI_CHANGE_AUTHOR_DISPLAY_NAME
   builddata["commit_msg"] = DISTELLI_CHANGE_TITLE
   builddata["commit_id"] = DISTELLI_CHANGE_ID
@@ -111,6 +111,7 @@ def pushData (method,baseurl,args,payload) {
     def postRC = post.getResponseCode();
     if(postRC.equals(200)) {
       def object = jsonSlurper.parseText(post.getInputStream().getText());
+      echo "object: ${object}"
       return object
     }else{
 
