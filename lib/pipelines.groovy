@@ -33,8 +33,8 @@ def create_push_event(config){
     data['repo_name'] = 'timidri/rsvpapp'
     data['branch'] = DISTELLI_BRANCH_NAME
 
-    return = pushData('PUT',config['api_url'],pipeargs,data)
-    echo "return: ${return}"
+    def retval = pushData('PUT',config['api_url'],pipeargs,data)
+    echo "retval: ${retval}"
     return "OK"
     // return pushData('PUT',config['api_url'],pipeargs,data)['event_id']
   }
