@@ -65,9 +65,14 @@ def create_build_event(config){
   def pipeargs = "apps/${config['app_name']}/events/buildEvent?apiToken=${PIPELINES_API_TOKEN}"
   error(builddata)
   
-  def response = pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
-  echo response
-  return response
+  try {
+    def response = pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
+    echo response
+    return response
+  } catch (Exception e){
+      echo e
+      echo response
+  }
 }
 
 def update_build_status(build_event_id,status,config){
