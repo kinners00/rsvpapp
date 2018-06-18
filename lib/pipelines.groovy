@@ -79,8 +79,8 @@ def pushData (method,baseurl,args,payload) {
   def post
   def fullurl
   try {
-    def fullurl = "${baseurl}/${args}"
-    def post = new URL(fullurl).openConnection();
+    fullurl = "${baseurl}/${args}"
+    post = new URL(fullurl).openConnection();
     post.setRequestMethod(method)
     post.setDoOutput(true)
     post.setRequestProperty("Content-Type", "application/json")
