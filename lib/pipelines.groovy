@@ -96,6 +96,7 @@ def pushData (method,baseurl,args,payload) {
   def fullurl
   try {
     fullurl = "${baseurl}/${args}"
+    echo fullurl
     post = new URL(fullurl).openConnection();
     post.setRequestMethod(method)
     post.setDoOutput(true)
@@ -110,7 +111,7 @@ def pushData (method,baseurl,args,payload) {
       error("POST to ${baseurl} failed! Response code ${postRC.toString()}\nResponse: ${post.getInputStream().getText()}")
     }
   } catch (Exception e) {
-    echo fullurl
+    // echo fullurl
     echo e
     // throw e
   }
