@@ -15,9 +15,7 @@ node('pipelines') {
   }
 
   stage('build stuff'){
-    try {
-      error(config)
-      
+    try {      
       config['push_id'] = pipelines.create_push_event(config)
       config['build_id'] = pipelines.create_build_event(config)
 
@@ -26,6 +24,7 @@ node('pipelines') {
       sh('distelli push -save-release release_version.out')
       pipelines.update_build_status(config['build_id'],'Success',config)
     } catch (Exception e) {
+      error(config)
       pipelines.update_build_status(config['build_id'],'Failed',config)
       error("Failed to build! - ${e}")
     }
