@@ -36,15 +36,15 @@ def create_push_event(config){
     echo data.toString()
     
     try {
-      echo pipeargs
-      echo data.toString()
+      echo "pipeargs: ${pipeargs}"
+      echo "data: ${data.toString()}"
       response = pushData('PUT',config['api_url'],pipeargs,data)
       echo response.toString()
       // response = pushData('PUT',config['api_url'],pipeargs,data)['event_id']
       return response
     } catch (Exception e){
       echo data.toString()
-      echo e.toString()
+      // echo e.toString()
       echo response.toString()
     }
   }
