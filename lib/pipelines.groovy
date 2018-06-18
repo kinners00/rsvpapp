@@ -76,6 +76,8 @@ def update_build_status(build_event_id,status,config){
 
 def pushData (method,baseurl,args,payload) {
   def jsonSlurper = new JsonSlurper()
+  def post
+  def fullurl
   try {
     def fullurl = "${baseurl}/${args}"
     def post = new URL(fullurl).openConnection();
@@ -88,6 +90,8 @@ def pushData (method,baseurl,args,payload) {
       def object = jsonSlurper.parseText(post.getInputStream().getText());
       return object
     }else{
+      echo "post: ${post}"
+      echo "fullurl: ${fullurl}"
       error("POST to ${baseurl} failed! Response code ${postRC.toString()}")
     }
   } catch (Exception e) {
