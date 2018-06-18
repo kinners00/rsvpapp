@@ -55,10 +55,10 @@ def create_build_event(config){
   builddata["parent_event_id"] = config['push_id']
   
   def pipeargs = "apps/${config['app_name']}/events/buildEvent?apiToken=${PIPELINES_API_TOKEN}"
-  print builddata
+  echo builddata
   
   def response =pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
-  print response
+  echo response
   return response
 }
 
