@@ -112,7 +112,7 @@ def pushData (method,baseurl,args,payload) {
       error("POST to ${baseurl} failed! Response code ${postRC.toString()}\nResponse: ${post.getInputStream().getText()}")
     }
   } catch (Exception e) {
-    echo fullurl
+    echo "full url: " , fullurl
     // echo e
     // throw e
   }
