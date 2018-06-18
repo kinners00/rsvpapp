@@ -33,7 +33,7 @@ def create_push_event(config){
     data['repo_name'] = 'timidri/rsvpapp'
     data['branch'] = DISTELLI_BRANCH_NAME
 
-    echo data
+    echo data.toString()
     
     try {
       response = pushData('PUT',config['api_url'],pipeargs,data)['event_id']
@@ -64,8 +64,9 @@ def create_build_event(config){
   builddata["parent_event_id"] = config['push_id']
   
   def pipeargs = "apps/${config['app_name']}/events/buildEvent?apiToken=${PIPELINES_API_TOKEN}"
-  error(builddata)
-  
+  // error(builddata)
+  echo builddata.toString()
+
   try {
     def response = pushData('PUT',config['api_url'],pipeargs,builddata)['event_id']
     echo response
@@ -89,7 +90,7 @@ def update_build_status(build_event_id,status,config){
   }
 
   def eventargs = "apps/${config['app_name']}/events/${build_event_id}?apiToken=${PIPELINES_API_TOKEN}"
-  pushData('POST',config['api_url'],eventargs,eventdata)
+  // pushData('POST',config['api_url'],eventargs,eventdata)
 }
 
 def pushData (method,baseurl,args,payload) {
