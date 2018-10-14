@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 
 LINK=os.environ.get('LINK', "http://www.puppet.com")
-TEXT1=os.environ.get('TEXT1', "Pipelines Demo")
+TEXT1=os.environ.get('TEXT1', "Test test Demo")
 TEXT2=os.environ.get('TEXT2', "RSVP App")
 LOGO=os.environ.get('LOGO', "https://raw.githubusercontent.com/timidri/rsvpapp/master/static/puppet.png")
 COMPANY=os.environ.get('COMPANY', "Puppet Inc.")
