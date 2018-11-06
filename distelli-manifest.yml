@@ -1,4 +1,4 @@
-timidri/rsvpapp:
+kinners00/rsvpapp:
   Env:
     - LINK: 'http://www.puppet.com'
     - TEXT1: '"Vodafone Pipelines Demo 18-6"'
