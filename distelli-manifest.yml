@@ -12,6 +12,14 @@ kinners00/rsvpapp:
     - templates/*
   Build:
     - echo "Begin Build"
+    - sudo add-apt-repository ppa:jonathonf/python-3.6
+    - sudo apt-get update
+    - sudo apt-get install python3.6
+    - cd ~
+    - python3.6 -m venv virtualenv --without-pip
+    - cd virtualenv/
+    - source bin/activate
+    - curl https://bootstrap.pypa.io/get-pip.py | python3
     - virtualenv -p python36 py3
     - source py3/bin/activate
     - pip install -r requirements.txt
